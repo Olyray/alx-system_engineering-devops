@@ -1,0 +1,3 @@
+#!/bin/bash
+ls
+global-display-line-numbers-mode
