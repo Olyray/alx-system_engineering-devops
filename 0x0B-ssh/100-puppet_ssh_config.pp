@@ -1,5 +1,16 @@
-#modify the config file with puppet
-file { '/root/.ssh/config':
-  ensure  => file,
-  content => "Host 34.202.159.232\n  IdentityFile ~/.ssh/school\n  PasswordAuthentication no\n",  
+# Seting up my client config file
+include stdlib
+
+file_line { 'disable passwd auth':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '    PasswordAuthentication no',
+  replace => true,
+}
+
+file_line { 'identity file':
+  ensure => present,
+  path   => '/etc/ssh/ssh_config',
+  line   => '     IdentityFile ~/.ssh/school',
+  replace => true,
 }
