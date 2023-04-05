@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Bash script to configure a load balancer
+
+sudo apt-get update
+sudo apt-get -y install haproxy
+cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg
+defaults
+    log global
+    mode http
+    timeout connect 5s
+    timeout client 50s
+    timeout server 50s
+    balance roundrobin
+
+frontend http
+    bind *:80
+    default_backend servers
+
+backend servers
+    server 144581-web-01 34.202.159.232:80 check
+    server 144581-web-02 100.24.236.27:80 check
+EOF
+
+# Make sure HAproxy can be managed via an init script
+sudo update-rc.d haproxy defaults
+
+# Restart HAproxy service to apply changes
+sudo service haproxy restart
