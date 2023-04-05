@@ -2,7 +2,7 @@
 # Bash script to configure a load balancer
 
 sudo apt-get update
-sudo apt-get install haproxy
+sudo apt-get -y install haproxy
 cat <<EOF | sudo tee /etc/haproxy/haproxy.cfg
 defaults
     log global
