@@ -1,0 +1,17 @@
+defaults
+    log global
+    mode http
+    timeout connect 5s
+    timeout client 50s
+    timeout server 50s
+    balance roundrobin
+
+frontend http
+    bind *:80
+    default_backend servers
+    bind *:443 ssl crt /etc/haproxy/certs/www.olyray.tech.pem
+    redirect scheme https if !{ ssl_fc }
+
+backend servers
+    server 144581-web-01 34.202.159.232:80 check
+    server 144581-web-02 100.24.236.27:80 check
