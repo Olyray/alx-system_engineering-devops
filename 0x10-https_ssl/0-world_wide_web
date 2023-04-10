@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#Prints details for subdomains
+
+print_domain_info ()
+{
+    domain=$1
+    subdomain=$2
+    if [ -z "$subdomain" ]; then
+        subdomain_list=(www lb-01 web-01 web-02)
+    else
+        subdomain_list=("$subdomain")
+    fi
+    for sub in "${subdomain_list[@]}"; do
+        ip_address="$(dig +noall +answer "$sub"."$domain" | awk '{print $5}')"
+        record_type="$(dig +noall +answer "$sub"."$domain" | awk '{print $4}')"
+        echo "The subdomain $sub is a $record_type record and points to $ip_address"
+    done
+}
+
+print_domain_info "$1" "$2"
