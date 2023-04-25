@@ -29,6 +29,7 @@ def get_employee_todo_progress(id: int) -> None:
 
 
 if __name__ == "__main__":
+    """Documentation"""
     if len(sys.argv) > 1 and re.fullmatch(r"\d+", sys.argv[1]):
         id = int(sys.argv[1])
         get_employee_todo_progress(id)
