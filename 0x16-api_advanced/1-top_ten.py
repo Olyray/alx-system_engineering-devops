@@ -8,8 +8,8 @@ def top_ten(subreddit):
     # Create the required header/headers
     headers = {"User-Agent": "my-bot/0.0.1"}
     # Request the subreddit, using the header
-    response = requests.get(f"https://www.reddit.com/r/{subreddit}/hot.json?\
-                            limit=10", headers=headers)
+    response = requests.get("https://www.reddit.com/r/{}/hot.json?\
+                            limit=10".format(subreddit), headers=headers)
     # If the response from the request is valid
     if response.status_code == 200:
         # Parse through it and return the top ten hottest posts
