@@ -5,7 +5,7 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    # Create the required header
+    # Create the required header/headers
     headers = {"User-Agent": "my-bot/0.0.1"}
     # Request the subreddit, using the header
     response = requests.get(f"https://www.reddit.com/r/{subreddit}/about.json",
