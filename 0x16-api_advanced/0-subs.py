@@ -8,8 +8,8 @@ def number_of_subscribers(subreddit):
     # Create the required header/headers
     headers = {"User-Agent": "my-bot/0.0.1"}
     # Request the subreddit, using the header
-    response = requests.get(f"https://www.reddit.com/r/{subreddit}/about.json",
-                            headers=headers)
+    response = requests.get("https://www.reddit.com/r/{}/about.json"
+                            .format(subreddit),  headers=headers)
     # If the response from the request is valid
     if response.status_code == 200:
         # Parse through it and return the total number of subscribers
